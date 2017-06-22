@@ -4,25 +4,23 @@ using Sales.UnitOfWork;
 
 namespace Sales.Web.Controllers
 {
-    [ExceptionLoggerFilter]
-    public class CustomerController : Controller
+    public class EmployeeController : Controller
     {
         private readonly IUnitOfWork _unit;
-        
-        public CustomerController(IUnitOfWork unit)
+
+        public EmployeeController(IUnitOfWork unit)
         {
             _unit = unit;
         }
 
         public IActionResult Index()
         {
-            return View(_unit.Customers.GetAll());
+            return View(_unit.Employees.GetAll());
         }
         public IActionResult Detail()
         {
-            var customers = _unit.Customers.SearchByFirstName("Aaron");
+            var customers = _unit.Employees.SearchByLastName("Bennet");
             return View(customers);
         }
-
     }
 }
